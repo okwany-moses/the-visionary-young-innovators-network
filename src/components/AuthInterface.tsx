@@ -99,7 +99,7 @@ export default function AuthInterface({ onAuthChange, currentUser, currentToken 
       localStorage.setItem("vyin_session_token", data.token);
       localStorage.setItem("vyin_session_user", JSON.stringify(data.user));
       onAuthChange(data.token, data.user);
-      setSuccess("Account successfully instantiated on the network ledger.");
+      setSuccess("Account successfully instantiated on the ledger.");
     } catch (err: any) {
       setError(err.message || "An exception occurred during ledger allocation.");
     } finally {
@@ -216,13 +216,13 @@ export default function AuthInterface({ onAuthChange, currentUser, currentToken 
       <div className="text-center mb-6" id="auth-header-wrapper">
         <h3 className="text-sm font-mono font-bold uppercase tracking-widest text-emerald-400 mb-1">
           {mode === "login" && "System Gatekeeper"}
-          {mode === "register" && "Ledger Registration"}
+          {mode === "register" && "System Registration"}
           {mode === "forgot" && "Reset Coordinator"}
           {mode === "reset" && "Passcode Instantiation"}
         </h3>
         <p className="text-[11px] text-slate-400 leading-normal font-sans">
           {mode === "login" && "Authenticate representative session credentials."}
-          {mode === "register" && "Institute new representative profiles on the alliance ledger."}
+          {mode === "register" && "Institute new representative profiles on the network ledger."}
           {mode === "forgot" && "Initiate credentials security reset process."}
           {mode === "reset" && "Update system security key values."}
         </p>

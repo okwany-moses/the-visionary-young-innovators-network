@@ -15,7 +15,7 @@ const GALLERY_ITEMS: GalleryItem[] = [
     id: "2",
     title: "Chief Executive Officer",
     category: "team-projects",
-    description: "Our active CEO establishing institutional partnerships, community health models, and environmental alliances.",
+    description: "Our active CEO establishing institutional partnerships, community health models, and environmental efforts.",
     imagePath: "/images/ceo_vitalis_ogendo_1780341721126.jpg",
     fallbackIcon: "users"
   },
@@ -63,7 +63,7 @@ const GALLERY_ITEMS: GalleryItem[] = [
     id: "8",
     title: "Core Network Assembly",
     category: "team-projects",
-    description: "Annual planning assembly of The Visionary Young Innovators Network, unifying strategy under alliance frameworks.",
+    description: "Annual planning assembly of The Visionary Young Innovators Network, unifying strategy under network frameworks.",
     imagePath: "/images/team-group.jpg",
     fallbackIcon: "users"
   },

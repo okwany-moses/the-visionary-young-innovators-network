@@ -17,15 +17,10 @@ import {
   Phone, 
   Mail, 
   BookOpen,
-  Settings,
-  MonitorCog
 } from "lucide-react";
 import ImpactGallery from "./components/ImpactGallery";
 import RegistrationForm from "./components/RegistrationForm";
-import AuthInterface from "./components/AuthInterface";
-import BlogSection from "./components/BlogSection";
-import LogoCustomizer, { LogoSettingsType } from "./components/LogoCustomizer";
-import { Pillar, ExecutiveLeader, User } from "./types";
+import { Pillar, ExecutiveLeader } from "./types";
 
 const ORGANIZATIONAL_PILLARS: Pillar[] = [
   {
@@ -72,8 +67,8 @@ const EXECUTIVE_LEADERS: ExecutiveLeader[] = [
   {
     name: "Mr. Vitalis Ogendo",
     role: "CEO & General Director",
-    motto: "Strategic Alliances for Transformed Communities",
-    bio: "Mr. Vitalis Ogendo steers the macro-strategic alliances of the Network. By bringing Voicecommedia's digital leverage together with Lisa Hospitals' health stewardship, he ensures our field campaigns have the policy backing, executive funding, and systemic visibility to empower thousands of young innovators across the continent.",
+    motto: "Strategic Initiatives for Transformed Communities",
+    bio: "Mr. Vitalis Ogendo steers the macro-strategic growth of the Network. By bringing digital leverage together with Lisa Hospitals' health stewardship, he ensures our field campaigns have the policy backing, executive funding, and systemic visibility to empower thousands of young innovators across the continent.",
     imagePath: "/images/ceo_vitalis_ogendo_1780341721126.jpg",
     signature: "V. Ogendo"
   },
@@ -81,7 +76,7 @@ const EXECUTIVE_LEADERS: ExecutiveLeader[] = [
     name: "Socrates Hongo Sigu",
     role: "ICT Officer",
     motto: "Innovating Through Digital Excellence",
-    bio: "Socrates Hongo Sigu manages the technical infrastructure and digital systems of the Network. He is responsible for maintaining secure ledger systems, optimizing technical solution modules, and ensuring digital visibility for our multi-sectoral alliances.",
+    bio: "Socrates Hongo Sigu manages the technical infrastructure and digital systems of the Network. He is responsible for maintaining secure ledger systems, optimizing technical solution modules, and ensuring digital visibility for our multi-sectoral initiatives.",
     imagePath: "/images/ict_socrates_hongo_sigu.jpg",
     signature: "S. Hongo"
   }
@@ -90,46 +85,10 @@ const EXECUTIVE_LEADERS: ExecutiveLeader[] = [
 export default function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("hero");
-  const [currentToken, setCurrentToken] = useState<string | null>(null);
-  const [currentUser, setCurrentUser] = useState<User | null>(null);
   const [imageErrors, setImageErrors] = useState<Record<string, boolean>>({});
-
-  const [showCustomizer, setShowCustomizer] = useState(false);
-  const [logoSettings, setLogoSettings] = useState<LogoSettingsType>({
-    logoUrl: "/images/logo.jpg",
-    blendMode: "normal",
-    hueFilter: "original",
-    invert: false,
-    height: 48, // Increased default size
-    placement: "left",
-    glow: true
-  });
 
   const handleImageError = (id: string) => {
     setImageErrors(prev => ({ ...prev, [id]: true }));
-  };
-
-  // Initialize Auth state from localStorage
-  useEffect(() => {
-    const token = localStorage.getItem("vyin_session_token");
-    const storedUser = localStorage.getItem("vyin_session_user");
-    if (token && storedUser) {
-      setCurrentToken(token);
-      try {
-        setCurrentUser(JSON.parse(storedUser));
-      } catch (e) {
-        console.error("Stale login profile purged", e);
-        localStorage.removeItem("vyin_session_token");
-        localStorage.removeItem("vyin_session_user");
-        setCurrentToken(null);
-        setCurrentUser(null);
-      }
-    }
-  }, []);
-
-  const handleAuthChange = (token: string | null, user: User | null) => {
-    setCurrentToken(token);
-    setCurrentUser(user);
   };
 
   // Simple scroll spy logic
@@ -200,18 +159,7 @@ export default function App() {
                   src="/images/logo.jpg"
                   alt="VYIN Brand Logo"
                   onError={() => handleImageError('main-logo')}
-                  style={{ 
-                    height: `${logoSettings.height}px`,
-                    mixBlendMode: logoSettings.blendMode as any,
-                    filter: `${logoSettings.invert ? "invert(1) " : ""}${
-                      logoSettings.hueFilter === "grayscale" ? "grayscale(100%)" 
-                      : logoSettings.hueFilter === "monochrome-white" ? "brightness(0) invert(1)" 
-                      : logoSettings.hueFilter === "emerald" ? "sepia(1) saturate(5) hue-rotate(90deg)" : ""
-                    } brightness(1.1) contrast(1.1)`
-                  }}
-                  className={`w-auto object-contain transition-all duration-300 group-hover:scale-105 ${
-                    logoSettings.glow ? "drop-shadow-[0_0_15px_rgba(52,211,153,0.4)]" : ""
-                  }`}
+                  className="h-12 w-auto object-contain transition-all duration-300 group-hover:scale-105"
                 />
               ) : (
                 <Sparkles className="h-9 w-9 text-emerald-400" />
@@ -250,16 +198,6 @@ export default function App() {
                   {item.label}
                 </button>
               ))}
-
-              {currentUser?.role === "admin" && (
-                <button
-                  onClick={() => setShowCustomizer(true)}
-                  className="p-2 text-slate-400 hover:text-emerald-400 transition-colors cursor-pointer"
-                  title="Brand Customizer"
-                >
-                  <MonitorCog className="w-4 h-4" />
-                </button>
-              )}
 
               <button
                 onClick={() => scrollToElement("join")}
@@ -330,7 +268,7 @@ export default function App() {
             {/* Tagline Indicator Label */}
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-slate-900/50 border border-emerald-900/30 text-emerald-400 text-[10px] font-bold uppercase tracking-widest" id="hero-badge">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-              Global Vision & Development Alliance
+              Global Vision & Development Network
             </div>
 
             {/* Strategic Mission Header */}
@@ -340,7 +278,7 @@ export default function App() {
 
             {/* Detailed Brand Synopsis */}
             <p className="text-xs sm:text-sm md:text-base text-slate-450 max-w-3xl mx-auto leading-relaxed tracking-wide" id="hero-subhead">
-              The Visionary Young Innovators Network coordinates systemic, solution-oriented modules in strategic alliance with Voicecommedia. We actively fund educational tracks, advance local tree-planting buffers, and support Lisa Hospitals.
+              The Visionary Young Innovators Network coordinates systemic, solution-oriented modules. We actively fund educational tracks, advance local tree-planting buffers, and support Lisa Hospitals.
             </p>
 
             {/* Support Highlight Box */}
@@ -349,7 +287,7 @@ export default function App() {
                 <HeartPulse className="w-5 h-5 animate-pulse" />
               </span>
               <div className="text-left">
-                <p className="text-[10px] font-mono font-bold uppercase tracking-wider text-slate-500">Supporting Healthcare Alliance</p>
+                <p className="text-[10px] font-mono font-bold uppercase tracking-wider text-slate-500">Supporting Healthcare Network</p>
                 <p className="text-xs font-semibold text-slate-200">LISA HOSPITALS — YOUR HEALTH, OUR PRIORITY</p>
               </div>
             </div>
@@ -470,21 +408,10 @@ export default function App() {
                 </p>
               </div>
 
-              {/* Secure authorization component portal */}
-              <div className="w-full md:max-w-md" id="auth-portal-wrapper">
-                <AuthInterface 
-                  onAuthChange={handleAuthChange} 
-                  currentUser={currentUser} 
-                  currentToken={currentToken} 
-                />
+              <div className="w-full md:max-w-md p-6 bg-slate-900/50 border border-emerald-900/10 rounded-sm text-center">
+                <p className="text-xs text-slate-400 italic">Journal logs and community updates are being synchronized with the field mission.</p>
               </div>
             </div>
-
-            {/* Core state-managed blog dashboard component */}
-            <BlogSection 
-              currentUser={currentUser} 
-              currentToken={currentToken} 
-            />
 
           </div>
         </section>
@@ -579,13 +506,13 @@ export default function App() {
 
             {/* General Alliance quote banner */}
             <div className="p-8 md:p-10 rounded-sm bg-slate-900 border border-emerald-900/10 text-center space-y-4" id="strategic-statement-banner">
-              <span className="text-[10px] font-mono tracking-widest text-emerald-500 uppercase font-bold">Joint Strategic Alliance Statement</span>
+              <span className="text-[10px] font-mono tracking-widest text-emerald-500 uppercase font-bold">Joint Strategic Statement</span>
               <p className="text-md text-slate-350 italic font-display max-w-4xl mx-auto leading-relaxed">
-                "Our alliance with Voicecommedia is not a mere advertising campaign; it is a permanent infrastructure network. By channeling corporate advertising space into direct school sponsorships and supporting Lisa Hospitals' clinic equipment, we are proving that structural growth and health access can survive sustainably in local youth cadres."
+                "Our vision is focused on a permanent infrastructure network. By channeling corporate advertising space into direct school sponsorships and supporting Lisa Hospitals' clinic equipment, we are proving that structural growth and health access can survive sustainably in local youth cadres."
               </p>
               <div className="h-px bg-slate-950 w-24 mx-auto my-2" />
               <p className="text-[10px] font-mono uppercase text-slate-500 tracking-wider">
-                Authorized by: Joint Office of the MD and CEO — Voicecommedia & VYIN
+                Authorized by: Joint Office of the MD and CEO — VYIN
               </p>
             </div>
 
@@ -611,17 +538,6 @@ export default function App() {
           </div>
         </section>
 
-        {/* Brand Customizer Overlay */}
-        {showCustomizer && (
-          <LogoCustomizer 
-            onClose={() => setShowCustomizer(false)}
-            currentSettings={logoSettings}
-            onSettingsChange={setLogoSettings}
-            currentToken={currentToken}
-            isAdmin={currentUser?.role === "admin"}
-          />
-        )}
-
       </main>
 
       {/* 7. Footer showing Lisa Hospital motto */}
@@ -640,7 +556,7 @@ export default function App() {
             <div className="space-y-2" id="footer-col-1-brand">
               <span className="text-slate-300 uppercase tracking-widest font-bold text-[10px]">Strategic Operations Office</span>
               <p className="max-w-md leading-relaxed text-[11px]">
-                The Visionary Young Innovators Network, in technical coordination with Voicecommedia, scales tree-planting buffers, education sponsorships, and local clinical logistics.
+                The Visionary Young Innovators Network scales tree-planting buffers, education sponsorships, and local clinical logistics.
               </p>
             </div>
 

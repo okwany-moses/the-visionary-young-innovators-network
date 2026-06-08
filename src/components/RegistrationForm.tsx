@@ -131,10 +131,10 @@ export default function RegistrationForm() {
           Membership Roster
         </span>
         <h2 className="text-xl md:text-2xl font-display font-light text-slate-100 tracking-tight mt-4">
-          Join the Alliance
+          Join the Network
         </h2>
         <p className="text-xs text-slate-400 mt-2 max-w-md mx-auto leading-relaxed">
-          Enroll securely as an active co-creator. Settle into permanent developmental taskforces aligned with Voicecommedia.
+          Enroll securely as an active co-creator. Settle into permanent developmental taskforces.
         </p>
       </div>
 
@@ -155,11 +155,6 @@ export default function RegistrationForm() {
             </h4>
             
             <div className="space-y-3 text-xs font-mono">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 pb-2 border-b border-slate-900/40">
-                <span className="text-slate-500">Registry Core:</span>
-                <span className="text-emerald-400 font-semibold bg-emerald-500/10 px-2 py-0.5 rounded-sm border border-emerald-500/10 text-[10px]">Active Ledger Entry</span>
-              </div>
-
               {/* Web3Forms Dispatch Diagnostic */}
               <div className="flex flex-col gap-1 pt-0.5">
                 <div className="flex items-center justify-between">

@@ -238,7 +238,7 @@ export default function LogoCustomizer({
           <div className="flex items-center gap-2.5">
             <Settings className="w-5 h-5 text-emerald-400 animate-spin-slow" />
             <div>
-              <h3 className="text-sm font-mono font-bold tracking-widest text-slate-100 uppercase">Alliance Brand Customizer</h3>
+              <h3 className="text-sm font-mono font-bold tracking-widest text-slate-100 uppercase">Brand Customizer</h3>
               <p className="text-[10px] text-slate-400 font-sans mt-0.5">Configure photo logo parameters & visual blend options</p>
             </div>
           </div>
@@ -410,7 +410,7 @@ export default function LogoCustomizer({
                   className="w-full text-xs px-3 py-2 bg-slate-950 border border-slate-805 text-slate-100 rounded-sm focus:outline-none focus:ring-1 focus:ring-emerald-500"
                 >
                   <option value="original">Original Asset Colors</option>
-                  <option value="emerald">Emerald Alliance Green</option>
+                  <option value="emerald">Emerald Green</option>
                   <option value="grayscale">Grayscale Silver</option>
                   <option value="monochrome-white">Flat Monochrome White</option>
                 </select>
