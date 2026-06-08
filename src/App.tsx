@@ -182,7 +182,6 @@ export default function App() {
                 { id: "hero", label: "Mission" },
                 { id: "pillars", label: "Pillars" },
                 { id: "gallery", label: "Impact" },
-                { id: "blog", label: "News & Blog" },
                 { id: "leadership", label: "Leadership" }
               ].map((item) => (
                 <button
@@ -230,7 +229,6 @@ export default function App() {
               { id: "hero", label: "Home" },
               { id: "pillars", label: "Pillars of Impact" },
               { id: "gallery", label: "Our Impact Gallery" },
-              { id: "blog", label: "News & Blog" },
               { id: "leadership", label: "Executive Leadership" },
               { id: "join", label: "Affiliate Roster Signup" }
             ].map((item) => (
@@ -381,37 +379,6 @@ export default function App() {
 
             {/* Render Stateful Impact Component */}
             <ImpactGallery />
-
-          </div>
-        </section>
-
-        {/* 4.5. News & Blog Section with secure Auth & Blog interface */}
-        <section className="py-24 border-b border-emerald-900/10 bg-slate-905 relative" id="blog">
-          {/* Subtle Accent Ambient Background Gradients */}
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-full pointer-events-none" id="blog-ambient-gradients">
-            <div className="absolute top-[20%] right-[10%] w-[400px] h-[400px] rounded-full bg-emerald-500/4 blur-[120px]" />
-            <div className="absolute bottom-[10%] left-[5%] w-[400px] h-[400px] rounded-full bg-indigo-500/4 blur-[110px]" />
-          </div>
-
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 relative" id="blog-inner-container">
-            
-            {/* Section Headings */}
-            <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 border-b border-slate-950" id="blog-header-block">
-              <div className="space-y-3 text-left" id="blog-text-left">
-                <div className="inline-flex items-center gap-2 px-2.5 py-1 bg-slate-900/80 border border-emerald-950/20 text-emerald-400 text-[10px] font-bold uppercase tracking-widest" id="blog-indicator-badge">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                  System Ledger News Stream
-                </div>
-                <h2 className="text-2xl md:text-3xl lg:text-4xl font-display font-light text-slate-100 tracking-tight">VYIN News & Narrative Matrix</h2>
-                <p className="text-xs text-slate-400 max-w-xl leading-normal">
-                  Track operations logs, reforestation milestones, clinic sponsor equipment timelines, and academic development achievements.
-                </p>
-              </div>
-
-              <div className="w-full md:max-w-md p-6 bg-slate-900/50 border border-emerald-900/10 rounded-sm text-center">
-                <p className="text-xs text-slate-400 italic">Journal logs and community updates are being synchronized with the field mission.</p>
-              </div>
-            </div>
 
           </div>
         </section>
