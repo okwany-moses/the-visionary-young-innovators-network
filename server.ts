@@ -1,14 +1,9 @@
 import express, { Request, Response } from "express";
 import path from "path";
 import dotenv from "dotenv";
-import nodemailer from "nodemailer";
 import { createServer as createViteServer } from "vite";
 import fs from "fs";
 import crypto from "crypto";
-import dns from "dns";
-
-// Force IPv4 as the default for network lookups to prevent ENETUNREACH on Render
-dns.setDefaultResultOrder('ipv4first');
 
 // Load environment variables
 const envLocalPath = path.join(process.cwd(), ".env.local");
@@ -20,13 +15,9 @@ dotenv.config();
 const PORT = Number(process.env.PORT) || 5000;
 
 function validateEnvironment() {
-  // Observability: Log Active Integrations
-
-  // 3. Observability: Log Active Integrations
   const check = (key: string) => !!(process.env[key] && !process.env[key]?.includes("your_"));
   console.log(`[System] Integration Status:
-    - Formspree: ${check('FORMSPREE_FORM_ID') ? 'ACTIVE' : 'OFFLINE'}
-    - SMTP Fallback: ${check('SMTP_PASS') ? 'ACTIVE' : 'OFFLINE'}`);
+    - Formspree: ${check('FORMSPREE_FORM_ID') ? 'ACTIVE' : 'OFFLINE'}`);
 }
 
 /**
@@ -37,9 +28,7 @@ async function dispatchRegistrationNotifications(registrant: { fullName: string,
   const { fullName, email, phone, primaryPillar } = registrant;
   const status = {
     formspreeSent: false,
-    smtpSent: false,
     emailStatus: "Skipped - FORMSPREE_FORM_ID not configured.",
-    smtpStatus: "SMTP fallback not engaged."
   };
 
   // 1. Formspree Delivery
@@ -66,30 +55,6 @@ async function dispatchRegistrationNotifications(registrant: { fullName: string,
       }
     } catch (err: any) {
       status.emailStatus = `Formspree Error: ${err.message}`;
-    }
-  }
-
-  // 2. SMTP Fallback
-  const smtpHost = process.env.SMTP_HOST;
-  const smtpPass = process.env.SMTP_PASS;
-  if (smtpHost && smtpPass && !smtpPass.includes("your_")) {
-    try {
-      const transporter = nodemailer.createTransport({
-        host: smtpHost,
-        port: parseInt(process.env.SMTP_PORT || "587"),
-        family: 4, // Force IPv4 to resolve ENETUNREACH errors on Render/Node environments
-        auth: { user: process.env.SMTP_USER, pass: smtpPass }
-      });
-      await transporter.sendMail({
-        from: `"VYIN Notifications" <${process.env.SMTP_USER}>`,
-        to: process.env.TARGET_NOTIFICATION_EMAIL || "visionaryininovators26@gmail.com",
-        subject: `New Membership: ${fullName}`,
-        html: `<p><strong>Name:</strong> ${fullName}<br><strong>Pillar:</strong> ${primaryPillar}</p>`
-      });
-      status.smtpSent = true;
-      status.smtpStatus = "Dispatched via NodeMailer SMTP.";
-    } catch (err: any) {
-      status.smtpStatus = `SMTP Error: ${err.message}`;
     }
   }
 

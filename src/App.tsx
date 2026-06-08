@@ -170,9 +170,6 @@ export default function App() {
                 <h1 className="text-xs sm:text-sm font-bold tracking-tight text-emerald-400 font-display group-hover:text-emerald-300 transition-colors duration-200">
                   YOUNG INNOVATORS NETWORK
                 </h1>
-                <p className="text-[9px] uppercase tracking-[0.2em] text-slate-500 font-mono mt-0.5">
-                  Alliance with <span className="text-slate-300 font-semibold">Voicecommedia</span>
-                </p>
               </div>
             </div>
 

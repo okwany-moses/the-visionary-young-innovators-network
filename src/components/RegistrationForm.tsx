@@ -4,9 +4,7 @@ import { User, Mail, Phone, BookOpen, AlertTriangle, CheckCircle, RefreshCcw } f
 interface StatusDetails {
   emailSent: boolean;
   formspreeSent?: boolean;
-  smtpSent?: boolean;
   emailStatus: string;
-  smtpStatus?: string;
 }
 
 interface ServerResponse {
@@ -167,20 +165,6 @@ export default function RegistrationForm() {
                   {successResponse.details?.delivery.emailStatus}
                 </p>
               </div>
-
-              {/* SMTP Fallback Diagnostic */}
-              <div className="flex flex-col gap-1 pt-1.5 border-t border-slate-900/60">
-                <div className="flex items-center justify-between">
-                  <span className="text-slate-500">SMTP Notification Fallback:</span>
-                  <span className={`px-2 py-0.5 rounded-sm text-[9px] font-semibold ${successResponse.details?.delivery.smtpSent ? "bg-emerald-500/10 text-emerald-400" : "bg-yellow-500/10 text-yellow-500"}`}>
-                    {successResponse.details?.delivery.smtpSent ? "ACTIVE_BACKUP" : "SKIPPED"}
-                  </span>
-                </div>
-                <p className="text-[11px] text-slate-400 italic">
-                  {successResponse.details?.delivery.smtpStatus || "No fallback required."}
-                </p>
-              </div>
-
             </div>
 
             <button
