@@ -20,6 +20,13 @@ function validateEnvironment() {
     - Formspree: ${check('FORMSPREE_FORM_ID') ? 'ACTIVE' : 'OFFLINE'}`);
 }
 
+interface RegistrationPayload {
+  fullName: string;
+  email: string;
+  phone: string;
+  primaryPillar: string;
+}
+
 /**
  * System Notification Dispatcher
  * Coordinates delivery across multiple third-party gateways.
